@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzb.Dao.UserMapper">
+	<!-- 查询全部信息方法 -->
+	<select id="getalluser" resultType="User">
+		SELECT a.*,u.name FROM address AS a ,USER AS u WHERE a.id=u.addressId
+	</select>
+	
+	<!-- 增加一条信息 -->
+	<insert id="adduser" parameterType="User">
+		INSERT INTO USER(`name`,`addressId`) VALUES(#{name},#{addressId});
+	</insert>
+	
+	<!-- 删除一条信息 -->
+	<delete id="deluser" parameterType="Integer">
+		DELETE FROM USER WHERE id=#{id}
+	</delete>
+	
+	<!-- 根据id查询信息 -->
+	<select id="echoUser" resultType="Integer">
+		SELECT a.*,u.name FROM address AS a ,USER AS u WHERE a.id=u.addressId and u.id=#{id}
+	</select>
+	
+	<!-- 修改信息-->
+	<update id="modify" parameterType="User">
+		UPDATE USER SET `name`=#{name},`addressId`=#{addressId} WHERE id=#{id}
+	</update>
+	
+</mapper>
